@@ -64,7 +64,7 @@ export class SeriesService {
       const response = this._theMovieDbService
         .getSearchEndpoint()
         .TVShows(args);
-      return response;
+      return (await response).data.results;
     } catch (error) {
       console.log(error);
     }
