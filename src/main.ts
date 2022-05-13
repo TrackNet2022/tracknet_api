@@ -10,11 +10,11 @@ async function bootstrap() {
     // cargamos los archivos sobre las options
     options.httpsOptions = {
       cert: readFileSync(crPath),
-      key: readFileSync(pkPath)
-    }
+      key: readFileSync(pkPath),
+    };
   }
   const app = await NestFactory.create(AppModule, options);
-  
+
   app.setGlobalPrefix('api');
   app.enableCors();
   await app.listen(3000);
