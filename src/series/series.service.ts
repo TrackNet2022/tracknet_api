@@ -4,7 +4,7 @@ import { SerieModel } from './models/serie.model';
 
 @Injectable()
 export class SeriesService {
-  constructor(private readonly _theMovieDbService: TheMovieDbService) {}
+  constructor(private readonly _theMovieDbService: TheMovieDbService) { }
 
   async getDiscoverSeries() {
     let page = 1;
@@ -64,7 +64,7 @@ export class SeriesService {
       const response = this._theMovieDbService
         .getSearchEndpoint()
         .TVShows(args);
-      return (await response).data.results;
+      return (await response).data.results.filter((e) => e.poster_path);
     } catch (error) {
       console.log(error);
     }
