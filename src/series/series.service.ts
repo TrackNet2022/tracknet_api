@@ -1,11 +1,13 @@
 import { TheMovieDbService } from '@harshppatel/nestjs-themoviedb-api/dist/src';
 import { Injectable } from '@nestjs/common';
-import { SerieModel } from './models/serie.model';
 
 @Injectable()
 export class SeriesService {
-  constructor(private readonly _theMovieDbService: TheMovieDbService) { }
-
+  constructor(private readonly _theMovieDbService: TheMovieDbService) {}
+  /**
+   * Método para obtener las series mas populares del momento
+   * @returns Retorna una promesa con el resultado de la búsqueda
+   */
   async getDiscoverSeries() {
     let page = 1;
     const seriesDiscover = [];
@@ -35,6 +37,11 @@ export class SeriesService {
     return seriesDiscover;
   }
 
+  /**
+   * Método para obtener una serie en concreto, enviado una petición a theMobieDB
+   * @param id Número identifacativo de una serie
+   * @returns Una promesa con todos los datos de la serie
+   */
   async getSerieDetail(id: number) {
     try {
       const args = {
@@ -50,7 +57,11 @@ export class SeriesService {
       console.error(error);
     }
   }
-
+  /**
+   * Método para buscar series por nombre, enviado una petición a theMobieDB
+   * @param term Término de búsqueda enviado por el cliente
+   * @returns Una promesa con los resultados de la búsqueda
+   */
   async searchByTerm(term: string) {
     const args = {
       query: {
@@ -68,5 +79,6 @@ export class SeriesService {
     } catch (error) {
       console.log(error);
     }
+    return 'Not found';
   }
 }

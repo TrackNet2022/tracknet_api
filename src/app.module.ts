@@ -6,10 +6,13 @@ import { AppService } from './app.service';
 import { SeriesService } from './series/series.service';
 
 @Module({
-  imports: [HttpModule, TheMovieDbModule.forRoot({
-    API_KEY: '06a6204d6b11ff7de648833aa5563d87',
-    language: 'es',
-  }) ],
+  imports: [
+    HttpModule,
+    TheMovieDbModule.forRoot({
+      API_KEY: '06a6204d6b11ff7de648833aa5563d87',
+      language: 'es',
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService, SeriesService],
 })
